@@ -28,6 +28,9 @@ public class ringerMode extends CordovaPlugin {
         Context context = this.cordova.getActivity().getApplicationContext();
         AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 
+        int normal;
+        normal = 0; 
+
         switch (audioManager.getRingerMode()) {
             case AudioManager.RINGER_MODE_SILENT:
                 callbackContext.success("RINGER_MODE_SILENT");
@@ -36,8 +39,11 @@ public class ringerMode extends CordovaPlugin {
                 callbackContext.success("RINGER_MODE_VIBRATE");
                 break;
             case AudioManager.RINGER_MODE_NORMAL:
-                callbackContext.success("RINGER_MODE_NORMAL");
+                normal = 1; 
                 break;
+        }
+        if(number == 1){
+                callbackContext.success(audioManager.getStreamVolume(AudioManager.STREAM_NOTIFICATION));
         }
     }
 }
